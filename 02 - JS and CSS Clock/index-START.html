@@ -61,9 +61,23 @@
             top: 50%;
             transform-origin: 100%;    /* Cambio de punto de pivote. Para que en centro de rotacion este a la derecha de todo y no en el centro del div */
             transform: rotate(90deg);    /* Set start point at 12.00hs */
-            transition: all 0.15s cubic-bezier(0, 0.76, 0.4, 1.65);
         }
 
+		.hour-hand {
+			width: 30%;
+			height: 8px;
+			left: 59px;
+		}
+
+		.min-hand {
+			width: 45%;
+			left: 15px;
+		}
+
+		.second-hand {
+			height: 4px;
+			background-color: red;
+		}
     </style>
 
 
@@ -98,11 +112,6 @@
 			minHand.style.transform = `rotate(${min}deg)`;
 			secHand.style.transform = `rotate(${sec}deg)`;
 		}
-
-
-
-
-
     </script>
 </body>
 </html>
