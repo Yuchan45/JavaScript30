@@ -58,7 +58,28 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
+    const keys = document.querySelectorAll(".key");
+    keys.forEach(key => {
+        key.addEventListener('transitionend', removeTransition);
+    });
 
+
+    window.addEventListener('keydown', playSound);
+
+    function playSound(e) {
+        const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+        const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+
+        if (!audio) return; // Break si la tecla no es valida.
+        audio.currentTime = 0; // Reseteo el audio (en caso de que vuelva a tocar la tecla). Sino habria que esperar siempre a que termine de sonar.
+        audio.play();
+        key.classList.add("playing");
+    }
+
+    function removeTransition(e) {
+        if (e.propertyName !== 'transform') return;
+        this.classList.remove('playing');
+    }
 </script>
 
 
