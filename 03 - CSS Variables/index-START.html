@@ -21,6 +21,24 @@
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
   <style>
+    /*
+      Variables modificadas con js
+    */
+    :root {
+      --base: #ffc600;
+      --spacing: 10px;
+      --blur: 10px;
+    }
+
+    img {
+      padding: var(--spacing);
+      background: var(--base);
+      filter: blur(var(--blur));
+    }
+
+    .hl {
+      color: var(--base);
+    }
 
     /*
       misc styles, nothing to do with CSS variables
@@ -45,6 +63,19 @@
   </style>
 
   <script>
+    const inputs = document.querySelectorAll('.controls input');
+    
+    inputs.forEach(input => input.addEventListener('input', updateValues));
+    
+    function updateValues() {
+      const value = this.value;
+      let suffix = this.dataset.sizing;
+      if (!suffix) suffix = '';
+      //console.log(`--${this.name}`, value + suffix);
+      document.documentElement.style.setProperty(`--${this.name}`, value + suffix);
+
+    }
+
   </script>
 
 </body>
