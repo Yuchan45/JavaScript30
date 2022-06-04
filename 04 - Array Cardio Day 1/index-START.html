@@ -35,31 +35,93 @@
       'Billings, Josh', 'Birrell, Augustine', 'Blair, Tony', 'Beecher, Henry', 'Biondo, Frank'
     ];
     
-    // Array.prototype.filter()
+    //  *** Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+    function legacyInvertors() {
+      const oldInventors = inventors.filter((inventor) => {
+        if (inventor.year >= 1500 && inventor.year <= 1600) return true;
+      });
+      return oldInventors;
+    }
+    //console.log(legacyInvertors());
+
 
     // Array.prototype.map()
-    // 2. Give us an array of the inventors first and last names
+    //  *** 2. Give us an array of the inventors first and last names *** 
+    function inventorFirstLastName() {
+      const firstLastNames = inventors.map((inventor) => {
+        return {first: inventor.first, last: inventor.last};
+      });
+      return firstLastNames;
+    }
+    // console.log(inventorFirstLastName());
+
 
     // Array.prototype.sort()
-    // 3. Sort the inventors by birthdate, oldest to youngest
+    //  *** 3. Sort the inventors by birthdate, oldest to youngest *** 
+    function inventorsBirthdateSort() {
+      const sorted = inventors.sort((personA, personB) => {
+        if (personA.year > personB.year) return 1;
+        return -1;
+      });
+
+      return sorted;
+    }
+    //console.log(inventorsBirthdateSort());
+
 
     // Array.prototype.reduce()
-    // 4. How many years did all the inventors live all together?
+    //  *** 4. How many years did all the inventors live all together? (Summation of all inventors years of life) *** 
+    function inventorsYearsTogether() {
+      const total = inventors.reduce((acum, inventor) => {
+        return acum + inventor.passed - inventor.year;
+      }, 0);  // Si no pongo el 0 como parametro aca. El total esta inicializado como Undefined y en la 1er iteracion no va a poder sumar.
+      return total;
 
-    // 5. Sort the inventors by years lived
 
-    // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
+    }
+    //console.log(inventorsYearsTogether());
+
+
+    //  *** 5. Sort the inventors by years lived *** 
+    function sortByYearsLived() {
+      const sorted = inventors.sort((a,b) => {
+        if ((a.passed - a.year) < (b.passed - b.year)) return 1;
+        return -1;
+      });
+      return sorted;
+    } 
+    //console.log(sortByYearsLived());
+
+    //  *** 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name *** 
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
 
-    // 7. sort Exercise
+    //  *** 7. sort Exercise *** 
     // Sort the people alphabetically by last name
+    function sortByLastName() {
+      const sorted = inventors.sort((a,b) => {
+        if (a.last > b.last) return 1;
+        return -1;
+      });
+      return sorted;
+    }
+    //console.log(sortByLastName());
 
-    // 8. Reduce Exercise
+    //  *** 8. Reduce Exercise *** 
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
-
+    function listReduce() {
+      reduced = data.reduce((obj, vehicle)=> {
+        if (!obj[vehicle]) {
+          obj[vehicle] = 0;
+        }
+        obj[vehicle]++;
+        return obj;
+      }, {}); // Le pasamos por parametro un objeto inicial vacio.
+      return reduced;
+    }
+    //console.log(listReduce());
   </script>
 </body>
 </html>
